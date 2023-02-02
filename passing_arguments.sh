@@ -4,12 +4,15 @@
 #Shell Script for Finding area of a rectangle
 
 #Finding no. of arguments passed
-$no_of_arguments_passed=$#
+no_of_arguments_passed=$#
 
 if [ $no_of_arguments_passed -eq 0 ];
 then
     echo "No Arguments Entered"
 
+elif [ $no_of_arguments_passed -gt 2 ];
+then
+    echo "Enter exactly 2 arguments"
 #Check if any of the arguments is empty or not
 elif [ -z $1 ] || [ -z $2 ];
 then
