@@ -3,8 +3,15 @@
 
 #Shell Script for Finding area of a rectangle
 
+#Finding no. of arguments passed
+$no_of_arguments_passed=$#
+
+if [ $no_of_arguments_passed -eq 0 ];
+then
+    echo "No Arguments Entered"
+
 #Check if any of the arguments is empty or not
-if [ -z $1 ] || [ -z $2 ];
+elif [ -z $1 ] || [ -z $2 ];
 then
     #Some arguments missing
     echo "Some of the Arguments Missing"
