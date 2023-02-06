@@ -17,34 +17,26 @@ sed -i 's/:}//g' ending_numbers.txt
 
 awk '{print; getline < "ending_numbers.txt"; print}' starting_numbers.txt >> final_numbers.txt
 
-input="final_numbers.txt"
-i=0
-j=0
-while IFS= read -r line
+number_of_lines=`wc --lines < ending_numbers.txt`
+
+i=1
+closing=0
+
+#Read Data from log file
+while (($i<=$number_of_lines))
 do
-  echo $line
-  
-  rem=$(($i%2))
-  if [ $rem -eq 0 ];
-  then 
-    
-    req_line=$(expr $line + 1)
-    line_content=$(head -$req_line log_file.log | tail +$req_line)
-    line_content_2=$(head -$line log_file.log | tail +$line)
-    if [[ $line_content=="level: 'verbose'," ]];
-    then 
-        j=1
-    else
-        j=0
-    fi
-  else
-    if [ $j -eq 1 ];
-    then 
-        line_content_3=$(head -$line log_file.log | tail +$line)
-        append_line=$(head -$req_line log_file.log | tail +$req_line)
-        echo $append_line >> final_answer.txt
-    fi
-  
-  fi
+  opening=`expr $closing + 1`
+  #Check the i th line
+  closing=$( head -$i ending_numbers.txt | tail +$i )
   ((i++))
-done < "$input"
+
+  #Extract one log level
+  first=$( head -$closing log_file.log | tail +$opening )
+
+  #Append all corresponding lines to it
+  for j in $@
+    do
+    echo  $first | grep $j >> $j.txt
+  done
+
+done
