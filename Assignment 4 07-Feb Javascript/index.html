@@ -1,0 +1,38 @@
+<html>
+    
+    <title>Admin Page</title>
+    <body>
+    <center><h1>Admin - Upload Questions in JSON Format</h1>
+    </center><hr><input id="file" type="file" />
+
+    <script>
+    (function(){
+    
+    function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+    }
+
+    function onReaderLoad(event){
+        console.log(event.target.result);
+        var obj = JSON.parse(event.target.result);
+        const myJSON = JSON.stringify(obj);
+        localStorage.setItem("questions", myJSON);
+    }
+    
+    function alert_data(name, family){
+        alert('Name : ' + name + ', Family : ' + family);
+    }
+ 
+    document.getElementById('file').addEventListener('change', onChange);
+
+}());
+    
+    </script>
+    </body>
+    
+    
+    
+    
+</html>

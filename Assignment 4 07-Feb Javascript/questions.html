@@ -1,0 +1,154 @@
+<html>
+<script>
+let text = localStorage.getItem("questions");
+let obj = JSON.parse(text);
+var hi = "";
+const given_answers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const correct_answers = [];
+const positiv_marks = [];
+const negativ_marks = [];
+function validateee(){
+    for (let i=0; i < 10; i++ ) {
+        var x = "q" + (i+1) + "a";
+
+        if (document.getElementById(x).checked) {
+            given_answers[i] = "A";
+        }
+        x = "q" + (i+1) + "b";
+
+        if (document.getElementById(x).checked) {
+            given_answers[i] = "B";
+        }
+        x = "q" + (i+1) + "c";
+
+        if (document.getElementById(x).checked) {
+            given_answers[i] = "C";
+        }
+        x = "q" + (i+1) + "d";
+
+        if (document.getElementById(x).checked) {
+            given_answers[i] = "D";
+        }
+
+
+}
+var final_report = "<center><h1>Candidate - Result</h1></center>";
+let total = 0;
+let positiv = 0;
+let negativ = 0;
+
+for (let i=0; i<10; i++) {
+    final_report += "<hr><b>Question " + (i+1);
+    final_report += " : </b>" + obj[i+1].ques;
+    if( given_answers[i] == i){
+        final_report += "<br>Given Answer : Not Attempted";
+    }
+    else{
+    final_report += "<br>Given Answer : " + given_answers[i];
+    }
+    final_report += "<br>Correct Answer : " + obj[i+1].ans;
+    final_report += "<br>Obtained Marks : ";
+    
+
+
+    qid = "q" + (i+1);
+    if (given_answers[i] == i){
+        final_report += "0";
+    }
+    else if (given_answers[i] == obj[i+1].ans) {
+        positiv += obj[i+1].marks;
+        final_report += obj[i+1].marks;
+    } 
+    else {
+        negativ += obj[i+1].neg;
+        final_report += obj[i+1].neg;
+    }
+
+    
+
+}
+
+final_report += ("<hr><h2>Total Positive Marks : " + positiv + "<br>Total Negative Marks : " + negativ + "<br>Total Marks : " + (positiv + negativ) + "</h2>");
+document.writeln(final_report);
+    }
+
+</script>
+<center><h1>Candidate - Questions</h1>
+</center>
+<hr>
+<script>var i = 0; </script>
+<br><b>Question <SCRIPT>document.writeln(i+1);</SCRIPT> : </b> </b><script>document.writeln(obj[i+1].ques)</script>
+<br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+
+<br><input type='radio' id='q1a' name="q1" value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q1b' name="q1" value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q1c' name="q1" value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q1d' name="q1" value='D'> <script>document.writeln(obj[i+1].op4);</script>
+<hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q2a' name='q2' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q2b' name='q2' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q2c' name='q2' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q2d' name='q2' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q3a' name='q3' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q3b' name='q3' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q3c' name='q3' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q3d' name='q3' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q4a' name='q4' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q4b' name='q4' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q4c' name='q4' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q4d' name='q4' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q5a' name='q5' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q5b' name='q5' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q5c' name='q5' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q5d' name='q5' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q6a' name='q6' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q6b' name='q6' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q6c' name='q6' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q6d' name='q6' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q7a' name='q7' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q7b' name='q7' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q7c' name='q7' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q7d' name='q7' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q8a' name='q8' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q8b' name='q8' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q8c' name='q8' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q8d' name='q8' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q9a' name='q9' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q9b' name='q9' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q9c' name='q9' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q9d' name='q9' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+    <hr>
+    <br><b>Question <SCRIPT>i++; document.writeln(i+1);</SCRIPT> : </b> <script>document.writeln(obj[i+1].ques)</script>
+    <br>Marks : <script>document.writeln(obj[i+1].marks)</script> Negative Marks : <script>document.writeln(obj[i+1].neg)</script>
+    <br><input type='radio' id='q10a' name='q10' value='A'> <script>document.writeln(obj[i+1].op1);</script>
+    <br><input type='radio' id='q10b' name='q10' value='B'> <script>document.writeln(obj[i+1].op2);</script>
+    <br><input type='radio' id='q10c' name='q10' value='C'> <script>document.writeln(obj[i+1].op3);</script>
+    <br><input type='radio' id='q10d' name='q10' value='D'> <script>document.writeln(obj[i+1].op4);</script>
+
+    <hr>
+<input type="button" onclick="validateee()" value="Submit"/>
+</html>
