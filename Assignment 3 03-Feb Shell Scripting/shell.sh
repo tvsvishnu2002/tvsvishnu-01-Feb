@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#Removing all previous text files
+rm *.txt
+
+#Taking input from user 
+
+echo "Enter a Level Name (Debug, Info, Verbose )"
+read required_level 
+
 #Initially, find line numbers of the { bracket and store them in a file starting_numbers.txt
 
 grep -n '^{' log_file.log >> starting_numbers.txt
@@ -34,7 +42,7 @@ do
   first=$( head -$closing log_file.log | tail +$opening )
 
   #Append all corresponding lines to it
-  for j in $@
+  for j in $required_level
     do
     echo  $first | grep $j >> $j.txt
   done
