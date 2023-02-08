@@ -1,8 +1,8 @@
 Assignment 4 07-Feb Javascript
 
 Link : 
-Admin Page : http://tvsvishnu.000webhostapp.com/backflipt/
-Candidate Page : http://tvsvishnu.000webhostapp.com/backflipt/questions.html
+- Admin Page : http://tvsvishnu.000webhostapp.com/backflipt/
+- Candidate Page : http://tvsvishnu.000webhostapp.com/backflipt/questions.html
 
 First go to Admin Page, upload json file, then go to candidate page.
 
