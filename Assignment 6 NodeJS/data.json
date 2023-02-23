@@ -1,0 +1,20 @@
+{
+    "1" : {"ques": "What is your name?", "op1": "TVS", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "2" : {"ques": "Where will you stay?", "op1": "Hyderabad", "op2": "Chennai", "op3": "C", "op4": "D", "ans": "B", "marks": 2, "neg": -1},
+    "3" : {"ques": "What is the capital of Telangana?", "op1": "Hyderabad", "op2": "Vijayawada", "op3": "C", "op4": "D", "ans": "C", "marks": 2, "neg": -1},
+    "4" : {"ques": "2+2 = ?", "op1": "4", "op2": "5", "op3": "6", "op4": "7", "ans": "A", "marks": 2, "neg": -1},
+    "5" : {"ques": "Q5", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "D", "marks": 2, "neg": -1},
+    "6" : {"ques": "Q6", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "D", "marks": 2, "neg": -1},
+    "7" : {"ques": "Q7", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "C", "marks": 2, "neg": -1},
+    "8" : {"ques": "Q8", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "B", "marks": 2, "neg": -1},
+    "9" : {"ques": "Q9", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "C", "marks": 2, "neg": -1},
+    "10" : {"ques": "Sample Question 10", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "11" : {"ques": "Sample Question 11", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "12" : {"ques": "Sample Question 12", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "13" : {"ques": "Sample Question 13", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "14" : {"ques": "Sample Question 14", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1},
+    "15" : {"ques": "Sample Question 15", "op1": "A", "op2": "B", "op3": "C", "op4": "D", "ans": "A", "marks": 2, "neg": -1}
+
+
+
+}

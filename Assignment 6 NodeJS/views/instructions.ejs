@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <center><body><h1>Candidate - Instructions</h1><title>Candidate - Instructions</title><hr>
+
+<table border="1"><th>Instructions</th>
+    <% for(var i=0; i<items.length; i++) {%>
+
+<tr><td><%= items[i].instruction %></td></tr>
+    <% } %>
+    
+</table>
+<br>
+
+<form action="/q2" method="POST">
+    <input type="checkbox" name="check" id="GFG" value="1" required><b>Read Instructions and Check this</b><br> <br>
+<button class="btn btn-primary" id="gotoques">Click to view Questions</button></form>
+<h3>
+<p id="demo"><b>Redirecting to Questions in : 1:00</b> </p></h3><p id="demo2" style="display:none">60</p>
+
+
+<script>
+    
+
+    setInterval(displayHello, 1000);
+    
+        function displayHello() {
+            document.getElementById("demo2").innerHTML -= 1;
+    
+            var totaltime = document.getElementById("demo2").innerHTML;
+          var display = "";
+          var minutes = Math.floor(totaltime/60)
+    
+          var seconds = totaltime - (minutes*60)
+            if(seconds<10){
+                display += ("Redirecting to Questions in : " + minutes + ":0" + seconds)
+            }
+            else{
+                display += ("Redirecting to Questions in : " + minutes + ":" + seconds)
+            }
+          
+          document.getElementById("demo").innerHTML = display;
+    
+          if (document.getElementById("demo2").innerHTML <= 0){
+            document.getElementById("GFG").click();
+
+            document.getElementById("gotoques").click();
+          }
+        }
+        </script>
+<style>
+    body{
+        font-family: Roboto;
+        font-size: 14px;
+    }
+
+
+.btn-primary {
+    font-family : Roboto;
+    background-color: #00468a !important;
+    border-color: none !important;
+    font-size: 16px;
+    border:none;
+    width : 200px;
+    border-radius: 17.5px;
+    height : 35px;
+    color : white;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+ table { 
+  border-collapse: collapse; 
+    border: 1px solid #ccc; 
+
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+    padding : 6px;
+  background: #333; 
+  height : 35px;
+  color: white; 
+  font-weight: bold; 
+}
+td {    
+    padding : 6px;
+
+    height:35px;
+}
+th, td {
+    white-space: nowrap;
+}
+
+</style>
+
+    </STYLE></body>
+</html>
