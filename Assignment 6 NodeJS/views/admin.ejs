@@ -39,21 +39,63 @@
 
 
     </center><hr>
-    
-    <form action="/time" method="POST">
+    <h2>Set Time</h2>
+    <form action="/admin/instime" method="POST">
         <h4>Enter Time in Minutes : <input id="m" name="time" type="text"></h4>
 
    <button class="btn btn-primary">Submit</button></form>
-
-
+<hr>
+   <h2>Insert Instructions</h2>
 
 
    
-   <form action="/insinstr" method="POST">
+   <form action="/admin/insinstr" method="POST">
     <h4>Enter an Instruction : <input id="m" name="instruction" type="text"></h4>
 
 <button class="btn btn-primary">Submit</button></form>
-    </body>
+
+<hr>
+
+<h2>Insert Questions</h2>
+
+
+   
+<form action="/admin/insq" method="POST">
+    <h4>Enter a Question : <input id="m" name="quest" type="text"></h4>
+    <h4>Enter Option A : <input id="m" name="op1" type="text"></h4>
+    <h4>Enter Option B : <input id="m" name="op2" type="text"></h4>
+    <h4>Enter Option C : <input id="m" name="op3" type="text"></h4>
+    <h4>Enter Option D : <input id="m" name="op4" type="text"></h4>
+    <h4>Enter Correct Option : <input id="m" name="ans" type="text"></h4>
+    <h4>Marks for Correct : <input id="m" name="pos" type="text"></h4>
+    <h4>Negative Marking : <input id="m" name="neg" type="text"></h4>
+    
+<button class="btn btn-primary">Submit</button></form>
+    <hr>
+
+
+
+    <h2>Delete Question</h2>
+    
+    
+       
+    <form action="/admin/deleteq" method="POST">
+      <b>Select question to Delete : </b>  
+
+      <select name="delquest" required>
+        <option value="" selected disabled hidden>Select</option>
+
+        <%for (var i in allDetails){%>
+               <option value="ObjectId(<%=allDetails[i]._id%>)"><%=allDetails[i].ques%></option>
+            
+            
+            <%}%>>
+        </select><br>
+<br>
+        
+    <button class="btn btn-primary">Submit</button></form>
+        <hr>
+</body>
     
     
     

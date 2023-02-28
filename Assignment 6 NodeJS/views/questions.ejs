@@ -5,7 +5,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<body onload="toggleFullScreen()">
+<body onload="toggleFullScreen()" style="overflow-y : hidden">
 <script>
 var no_of_questions = '<%=noofqs%>';
 var violations = -1;
@@ -13,6 +13,15 @@ var violations = -1;
 
 
 <script>
+    var s = true
+    if(s){
+        var curr_q = 1;
+    var prev_q = no_of_questions;
+    var next_q = 1;
+    s = false;
+
+    }
+    
     function change_colour_2(q_idd, checkbox){
         q_i = q_idd + "qb"; 
         q_id = q_idd + "q";      
@@ -59,9 +68,22 @@ var violations = -1;
 
     }
     
-
-var fullss = false;
+    
+    var fullss = false;
     function ShowDiv(id) {
+        curr_q = id
+        if(curr_q == 1){
+    prev_q = no_of_questions
+    next_q = parseInt(curr_q) + 1
+}
+else if(curr_q == no_of_questions){
+    prev_q = parseInt(curr_q) - 1
+    next_q = 1
+}
+else{
+    prev_q = parseInt(curr_q) - 1
+    next_q = parseInt(curr_q) + 1
+}
         if(fullss){
             //violations -= 1
             document.getElementById("fullscreenbutton").click();
@@ -172,7 +194,7 @@ setTimeout(submittest, 3000);
         function displayHello() {
            
             document.getElementById("demo2").innerHTML -= 1;
-    
+            
             var totaltime = document.getElementById("demo2").innerHTML;
           var display = "";
           var minutes = Math.floor(totaltime/60)
@@ -186,10 +208,11 @@ setTimeout(submittest, 3000);
             }
           
           document.getElementById("demot").innerHTML = display;
-    
+            
           if (document.getElementById("demo2").innerHTML <= 300){
             document.getElementById("head").style.color = "Red";
           }
+          
           if (document.getElementById("demo2").innerHTML <= 0){
             document.getElementById("subbutton").click();
           }
@@ -217,8 +240,32 @@ setTimeout(submittest, 3000);
         font-family: Roboto;
         font-size: 14px;
     }
-    
+
 #subbutton {
+    background-color: #00468a !important;
+    border-color: none !important;
+    font-size: 16px;
+    border:none;
+    width : 200px;
+    font-family : Roboto;
+    border-radius: 17.5px;
+    height : 35px;
+    color : white;
+}
+
+#prevbutton {
+    background-color: #00468a !important;
+    border-color: none !important;
+    font-size: 16px;
+    border:none;
+    width : 200px;
+    font-family : Roboto;
+    border-radius: 17.5px;
+    height : 35px;
+    color : white;
+}
+
+#nextbutton {
     background-color: #00468a !important;
     border-color: none !important;
     font-size: 16px;
@@ -238,27 +285,41 @@ td{
 <h3>Multiple Choice Questions Test - 23-Feb-2023 </h3>
 <h4>Welcome, <%= candname %> </h4>    
 
-
 <hr>
-<form action="/result" method="POST">
+<form action="/candidate/result" method="POST">
     <% for(var i=1; i<= noofqs; i++) { %>
         <div id="<%=i%>" style="display:none;" class="answer_list" >
-            <br><b>Question <%= i %> : </b> <br><br>
-                <%= questions[i].ques %>
-            <br><br><b>Marks : </b><%= questions[i].marks %> <br><b>Negative Marks : </b><%= questions[i].neg %> 
-            <br><br><input type='radio' id='q<%=i%>a' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='A'> <%= questions[i].op1 %>
-                <br><br><input type='radio' id='q<%=i%>b' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='B'> <%= questions[i].op2 %>
-                <br><br><input type='radio' id='q<%=i%>c' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='C'> <%= questions[i].op3 %>
-                <br><br><input type='radio' id='q<%=i%>d' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='D'> <%= questions[i].op4 %>
+            <div style="display: flex; justify-content: space-between;">
+                <b>Question <%= i %> : </b> <div> <b>Marks : </b><%= questions[i-1].marks %> &nbsp&nbsp&nbsp</div>
+</div>
+<div style="display: flex; justify-content: space-between;">
+    <%= questions[i-1].ques %> <div><b>Negative Marks : </b><%= questions[i-1].neg %>&nbsp&nbsp&nbsp&nbsp</div>
+</div>
                 
-                <br><br><input type='checkbox' id='q<%=i%>qb' onchange="change_colour_2('q<%=i%>', this)" name="q<%=i%>qb"> <b>Mark for Review</b>
+            <br><br><input type='radio' id='q<%=i%>a' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='A'> <%= questions[i-1].op1 %>
+                <br><br><input type='radio' id='q<%=i%>b' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='B'> <%= questions[i-1].op2 %>
+                <br><br><input type='radio' id='q<%=i%>c' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='C'> <%= questions[i-1].op3 %>
+                <br><br><input type='radio' id='q<%=i%>d' onchange="change_colour('q<%=i%>q')" name="q<%=i%>" value='D'> <%= questions[i-1].op4 %>
+                <br><br>
+                <br><input type='checkbox' id='q<%=i%>qb' onchange="change_colour_2('q<%=i%>', this)" name="q<%=i%>qb"> <b>Mark for Review</b>
             
-                <hr></div>
+                </div>
             <% } %>
-
-    <br><center><button id="subbutton">Submit</button></form>
+            <br><br><br><br><br><br><br><br><br>
+    <br><br><hr><center>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+            <input type="button" id="prevbutton" onclick = "ShowDiv(prev_q)" value="Previous Question">
+            <input type="button" id="nextbutton" onclick = "ShowDiv(next_q)" value='Next Question'>
+        </div>
+        <button id="subbutton"><b>Submit</b></button>
+        
+    </div><hr>
+    </form></center>
 
 <td>
+    <div style="height: 630px; overflow-x : hidden; overflow-y :scroll;">
+    
     <center>
         <% for(var i=1; i<= noofqs; i++) { %>
 
@@ -266,7 +327,8 @@ td{
             <br> <br>
 
             <% } %>
-</td>
+        </div>  </td>
 </tr> </table>
+
 </body>
 </html>
