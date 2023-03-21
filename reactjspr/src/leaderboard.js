@@ -1,6 +1,9 @@
 import axios from 'axios'
 import {Button, Table, Label, Pagination, PaginationProps, Menu, Icon, Dropdown} from 'semantic-ui-react'
 import { useState, useEffect } from 'react';
+import NAvbar from './navbar';
+import ReactPaginate from 'react-paginate';
+import "./pag.css";
 function Leaderboard() {
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
@@ -11,11 +14,22 @@ function Leaderboard() {
     }
     fetchData();
   }, [questions]);
+  const [currentPage, setCurrentPage] = useState(0); 
+  const handlePageClick = (data) => { 
+    setCurrentPage(data.selected);
+   }; 
+   const articlesPerPage = 10; 
+   const startIndex = currentPage * articlesPerPage; 
+   const endIndex = startIndex + articlesPerPage; 
+   const currentArticles = questions.slice(startIndex, endIndex); 
+   const pageCount = Math.ceil(questions.length / articlesPerPage);
+
 
 
   return (
-    <div>
-      <h1>Leaderboard</h1><hr></hr>
+    <center>    <div>
+      <h1>Leaderboard</h1>
+      <NAvbar></NAvbar>
       <Table collapsing>
     <Table.Header>
       <Table.Row>
@@ -25,7 +39,7 @@ function Leaderboard() {
       </Table.Row>
     </Table.Header>
     <Table.Body>
-        {questions.map((question) => (
+        {currentArticles.map((question) => (
 <Table.Row>
 <Table.Cell>{question.candname}</Table.Cell>
         <Table.Cell>{question.marks} </Table.Cell>
@@ -34,8 +48,20 @@ function Leaderboard() {
           ))}
  </Table.Body>
   </Table>
+  <div className="pagination-wrapper">
+  <ReactPaginate 
+  previousLabel={'<<'} 
+  nextLabel={'>>'} 
+  pageCount={Math.ceil(questions.length / articlesPerPage)} 
+  onPageChange={handlePageClick} 
+  containerClassName={'pagination'} 
+  activeClassName={'active'} 
+  pageRangeDisplayed={2} 
+  marginPagesDisplayed={2} 
+  breakClassName={'break-me'} 
+  breakLinkClassName={'break-me-link'} /></div>
+    </div></center>
 
-    </div>
   );
 }
 export default Leaderboard;

@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { List, Button, Grid, Image, Form, Radio, Container } from 'semantic-ui-react'
+import { List, Button, Modal,Icon, Input,Header,  Grid, Image, Form, Radio, Container } from 'semantic-ui-react'
 import { useFullScreenHandle } from 'react-full-screen';
+import Cookies from 'universal-cookie';
+import NAvbar from './navbar';
+import { handleRef } from '@fluentui/react-component-ref';
 function CandidateQuestions(props) {
   const [questions, setQuestions] = useState([]);
-
   const [count, setCount] = useState(0)
   const [currqno, setcurrqno] = useState(0);
-
+  var cook = new Cookies()
+  var uname = cook.get("username")
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get('/candidate/questionsapi');
@@ -31,6 +35,7 @@ function CandidateQuestions(props) {
     fetchData();
   }, []);
   const [questi, setquesti] = useState("");
+  const [open, setOpen] = React.useState(false)
 
   const [option1, setop1] = useState("");
   const [option2, setop2] = useState("");
@@ -51,29 +56,25 @@ function CandidateQuestions(props) {
   useEffect(() => {
 
     if (count < 0) {
+      //handleSub();
       formRef.current.submit();
     }
   }, [count])
   const history = useNavigate()
-
-  const [formData, setFormdata] = useState({})
+  const [formData, setFormdata] = useState({candname : uname})
   const handleChange = (e) => {
     setFormdata({ ...formData, [parseInt(e.target.name) + 1]: e.target.value });
   }
   function handleSub(e) {
     e.preventDefault()
+
     console.log(formData)
     axios.post('/candidate/result', formData).then((response) => {
       console.log(response)
       var total = response.data.marks
-      alert("Your Total Marks : " + total)
-      
-      history('/candidate/result2', {totalmarks : {totalm : total} })
-
+      history('/candidate/result2', {state: total})
     })
-
   }
-
 
   const displayQ = (e) => {
     e.preventDefault()
@@ -93,18 +94,20 @@ function CandidateQuestions(props) {
   }
 
   return (
-
+<center>
     <div>
       <h1>Candidate - Questions</h1>
+
       <h2>Timer : {Math.floor(count / 60)}:
         {count - (Math.floor(count / 60) * 60) >= 10 ? count - (Math.floor(count / 60) * 60) : <><>0</><>{count - (Math.floor(count / 60) * 60)}</></>}
 
 
-      </h2><hr></hr>
+      </h2>
+      <NAvbar/><br></br>
       {/* <Container textAlign='left'> */}
         <form onSubmit={handleSub} ref={formRef} method='post'>
 
-
+<input type="text" name="candname" defaultValue={uname} hidden></input>
           <Grid>
             <Grid.Column width={13}>
 
@@ -117,10 +120,10 @@ function CandidateQuestions(props) {
                 <br></br>
                 <br></br>
 
-                <input type="radio" onChange={handleChange} name={currqno} value='A'></input> {option1} <br></br><br></br>
-                <input type="radio" onChange={handleChange} name={currqno} value='B'></input> {option2}<br></br><br></br>
-                <input type="radio" onChange={handleChange} name={currqno} value='C'></input>{option3}<br></br><br></br>
-                <input type="radio" onChange={handleChange} name={currqno} value='D'></input> {option4}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='A'></Input> {option1} <br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='B'></Input> {option2}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='C'></Input>{option3}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='D'></Input> {option4}<br></br><br></br>
                 <hr></hr>
 
                 </Container>
@@ -142,16 +145,14 @@ function CandidateQuestions(props) {
 
           </Grid>
           <center>
-
-
-
-            <Button type="submit" primary>Submit</Button></center><br></br><br></br>
-        </form>
+         
+            <Button type="submit" primary>Submit</Button><br></br><br></br>
+            </center> </form>
       {/* </Container> */}
 
 
 
-    </div>
+    </div></center>
   );
 }
 export default CandidateQuestions;

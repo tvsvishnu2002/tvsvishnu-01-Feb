@@ -1,40 +1,45 @@
 import axios from 'axios'
-import {Button, Menu, Dropdown} from 'semantic-ui-react'
+import React from 'react';
+import {Button,Modal,  Menu, Dropdown} from 'semantic-ui-react'
 import { useState, useEffect } from 'react';
-import {navbar} from './navbar'
+import NAvbar from './navbar';
 import { Link } from 'react-router-dom';
+
 function AdminDelq(props) {
   const [questions, setQuestions] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get('/candidate/questionsapi');
       const questions = response.data["questions"]
-
       setQuestions(questions);
-
-
     }
-
     fetchData();
   }, []);
-  
+  const [open, setOpen] = React.useState(false)
+  const [sub, setsub] = useState(false)
+  const [formData, setFormdata] = useState({})
+  const handleChange = (e) => {
+    setFormdata({...formData, [e.target.name] : e.target.value});
+  }
+  function handleSub(e) {
+    e.preventDefault()
+    
+    console.log(formData)
+    axios.post('/admin/deleteq', formData).then((response) => {
+      setsub(true);
+      setOpen(true);
+
+    })
+  }
   return (
     <div>
       <h1>Admin Page - Delete Question</h1><navbar />
-      <Menu>
-                    <Menu.Item as={Link} name='Home' to='/admin'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Time' to='/admin/instime'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Question' to='/admin/insques'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Instruction' to='/admin/insinstruction'></Menu.Item>
-                    <Menu.Item as={Link} name='Delete Question' to='/admin/delquestion'></Menu.Item>
-                    <Menu.Item as={Link} name='Edit Question' to='/admin/editquestion'></Menu.Item>
+      <NAvbar /> 
 
-                </Menu>
-      <form action="/admin/deleteq" method="POST">
+      <form onSubmit={handleSub} method="POST">
       <b>Select question to Delete : </b> 
       
-      <select name="delquest" required>
+      <select name="delquest" onChange={handleChange} required>
         <option value="" selected disabled hidden>Select</option>
         {questions.map((question) => (
           <option value={question._id}>{question.ques}</option>
@@ -44,6 +49,24 @@ function AdminDelq(props) {
 <br></br>
         <Button content='Submit' primary />
         </form>
+        {open ? 
+
+<Modal
+      centered={true}
+      open={true}
+      onClose={() => setOpen(false)}
+      
+    >
+      <Modal.Header>Objective Test Software</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          Question Deleted Successfully.
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button primary onClick={() => setOpen(false)}>OK</Button>
+      </Modal.Actions>
+    </Modal> : <></>}
     </div>
   );
 

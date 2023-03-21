@@ -2,12 +2,27 @@ import {Input} from 'semantic-ui-react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Cookies from 'universal-cookie';
+import {Button, Icon} from 'semantic-ui-react'
+import Navbar from './components/navbar';
+import NAvbar from './navbar';
 function Candidate() {
+
   const [formData, setFormdata] = useState({"candname" : ""})
   const handleChange = (e) => {
     setFormdata({...formData, [e.target.name] : e.target.value});
   }
+  var cook = new Cookies()
+  var uname = cook.get("username")
+  var sessid = cook.get("session_id")
   const history =useNavigate()
+
+  if(uname === undefined){
+    alert("Hi")
+    history('/login')
+  }
+  
+  
   const handleSub = (e) => {
     e.preventDefault();
    axios.post('/update', formData);
@@ -15,15 +30,22 @@ function Candidate() {
     
 
   }
-  return (
-    <div className="Candidate">
-      <h1>Candidate - Enter Name</h1><hr></hr>
+  
+  return (<center>
+    <div className="Candidate"> {sessid}
+      <h1>Candidate - Enter Name</h1>
+      <NAvbar/><br></br>
       <form onSubmit={handleSub} method="post"> 
-      <b>Enter Name : </b><Input onChange= {handleChange} placeholder='Enter Name' name="candname" />
+      <b>Check Name : </b><Input placeholder='Enter Name' defaultValue = {uname} disabled name="candname" />
           <br></br><br></br>
-          <button class="ui primary button">Submit</button>
+          <Button animated primary>
+      <Button.Content visible >Next</Button.Content>
+      <Button.Content hidden>
+        <Icon name='arrow right' />
+      </Button.Content>
+    </Button>
       </form>
-    </div>
+    </div></center>
   );
 }
 export default Candidate;

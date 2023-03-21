@@ -1,26 +1,59 @@
 import {Input, Menu} from 'semantic-ui-react'
-import {navbar} from './navbar';
+import NAvbar from './navbar';
 import { Link } from 'react-router-dom';
+import React from 'react';
+import {Modal, Button } from 'semantic-ui-react';
+import axios from 'axios';
+import { useState } from 'react';
 function AdminInsInstr() {
+  const [open, setOpen] = React.useState(false)
+  const [sub, setsub] = useState(false)
+  const [formData, setFormdata] = useState({})
+  const handleChange = (e) => {
+    setFormdata({...formData, [e.target.name] : e.target.value});
+  }
+  function handleSub(e) {
+    e.preventDefault()
+    
+    console.log(formData)
+    axios.post('/admin/insinstr', formData).then((response) => {
+      setsub(true);
+      setOpen(true);
+
+    })
+  }
     return (
       <div className="AdminInsInstr">
         <h1>Admin Page - Enter Instruction</h1>
-        <Menu>
-                    <Menu.Item as={Link} name='Home' to='/admin'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Time' to='/admin/instime'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Question' to='/admin/insques'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Instruction' to='/admin/insinstruction'></Menu.Item>
-                    <Menu.Item as={Link} name='Delete Question' to='/admin/delquestion'></Menu.Item>
-                    <Menu.Item as={Link} name='Edit Question' to='/admin/editquestion'></Menu.Item>
+        <NAvbar /> 
 
-                </Menu>
-        <navbar />
-   <form action="/admin/insinstr" method="POST">
+   <form onSubmit={handleSub} method="POST">
 
-   <b>Enter Instruction : </b><Input placeholder='Enter Instruction' name="instruction" />
+   <b>Enter Instruction : </b><Input onChange={handleChange} placeholder='Enter Instruction' name="instruction" />
           <br></br><br></br>
           <button class="ui primary button">Submit</button>
     </form>
+
+    {open ? 
+
+<Modal
+      centered={true}
+      open={true}
+      onClose={() => setOpen(false)}
+      
+    >
+      <Modal.Header>Objective Test Software</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          Instruction Added Successfully.
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button primary onClick={() => setOpen(false)}>OK</Button>
+      </Modal.Actions>
+    </Modal> : <></>}
+
+
       </div>
     );
   }

@@ -5,7 +5,9 @@ import AdminInsQ from "./admin-ins-q";
 import AdminDelq from "./admin-del-q";
 import AdminInsInstr from "./admin-ins-instr";
 import Candidate from './candidate-name';
+import Cookies from 'universal-cookie';
 function CandidateHome(){
+    
     return (
         <div>
             <h1>Admin - Home</h1>
@@ -15,7 +17,7 @@ function CandidateHome(){
                     
  
                 </Routes>
-                <Button primary content='Take Test' as={Link} to='/candidate' />
+                <Button primary content='Take Test' as={Link} to='/candidate' required />
                 
         </div>
     )

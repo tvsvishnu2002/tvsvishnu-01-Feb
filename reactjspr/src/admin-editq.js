@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Button, Menu, Dropdown, Input, Checkbox} from 'semantic-ui-react'
 import { useState, useEffect } from 'react';
-import {navbar} from './navbar'
+import NAvbar from './navbar';
 import { Link, useParams } from 'react-router-dom';
 function AdminEditq(props) {
  
@@ -57,15 +57,8 @@ setneg(questions[currqn].neg)
   return (
     <div>
       <h1>Admin Page - Edit Question</h1><navbar />
-      <Menu>
-                    <Menu.Item as={Link} name='Home' to='/admin'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Time' to='/admin/instime'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Question' to='/admin/insques'></Menu.Item>
-                    <Menu.Item as={Link} name='Insert Instruction' to='/admin/insinstruction'></Menu.Item>
-                    <Menu.Item as={Link} name='Delete Question' to='/admin/delquestion'></Menu.Item>
-                    <Menu.Item as={Link} name='Edit Question' to='/admin/editquestion'></Menu.Item>
+      <NAvbar /> 
 
-                </Menu>
       <form action="/admin/editq" method="POST">
       <b>Select question to Edit : </b> 
       
