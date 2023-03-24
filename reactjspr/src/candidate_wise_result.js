@@ -3,14 +3,21 @@ import {Button, Table,  Label, Pagination, PaginationProps, Menu, Icon, Dropdown
 import { useState, useEffect } from 'react';
 import NAvbar from './navbar';
 import "./style.css"
+import Cookies from 'universal-cookie';
 import ReactPaginate from 'react-paginate';
-function Leaderboard() {
+function Leaderboard2() {
   const [questions, setQuestions] = useState([]);
+  var cook = new Cookies()
+
+  const [uname, setuname] = useState(cook.get("username"));
+  
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get('/leaderboardapi');
+
+      const response = await axios.post('/leaderboardapi2', {username : uname});
       const questions = response.data
       setQuestions(questions);
+      
     }
     fetchData();
   }, [questions]);
@@ -39,7 +46,7 @@ function Leaderboard() {
 
   return (
     <center>    <div>
-      <h1>Leaderboard</h1>
+      <h1>Previous Submissions</h1>
       <NAvbar></NAvbar>
       <Table collapsing>
     <Table.Header>
@@ -69,7 +76,7 @@ function Leaderboard() {
   containerClassName={'pagination'} 
   activeClassName={'active'} 
   pageRangeDisplayed={2} 
-  marginPagesDisplayed={1} 
+  marginPagesDisplayed={2} 
   breakClassName={'break-me'} 
   breakLinkClassName={'break-me-link'} /> 
   </div>
@@ -80,4 +87,4 @@ function Leaderboard() {
 
   );
 }
-export default Leaderboard;
+export default Leaderboard2;

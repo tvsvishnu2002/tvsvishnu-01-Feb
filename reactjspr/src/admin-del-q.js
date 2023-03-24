@@ -31,7 +31,7 @@ function AdminDelq(props) {
 
     })
   }
-  return (
+  return (<center>
     <div>
       <h1>Admin Page - Delete Question</h1><navbar />
       <NAvbar /> 
@@ -59,7 +59,7 @@ function AdminDelq(props) {
     >
       <Modal.Header>Objective Test Software</Modal.Header>
       <Modal.Content>
-        <Modal.Description>
+        <Modal.Description style={{color:"Black"}}>
           Question Deleted Successfully.
         </Modal.Description>
       </Modal.Content>
@@ -67,7 +67,7 @@ function AdminDelq(props) {
         <Button primary onClick={() => setOpen(false)}>OK</Button>
       </Modal.Actions>
     </Modal> : <></>}
-    </div>
+    </div></center>
   );
 
 }

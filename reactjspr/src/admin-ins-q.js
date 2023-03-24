@@ -22,7 +22,7 @@ function AdminInsQ() {
 
     })
   }
-  return (
+  return (<center>
     <div className="AdminInsQ">
       <h1>Admin Page - Enter Question</h1>
       <NAvbar /> 
@@ -49,7 +49,7 @@ function AdminInsQ() {
     >
       <Modal.Header>Objective Test Software</Modal.Header>
       <Modal.Content>
-        <Modal.Description>
+        <Modal.Description style={{color:"Black"}}>
           Question Added Successfully.
         </Modal.Description>
       </Modal.Content>
@@ -58,7 +58,7 @@ function AdminInsQ() {
       </Modal.Actions>
     </Modal> : <></>}
 
-    </div>
+    </div></center>
   );
 }
 

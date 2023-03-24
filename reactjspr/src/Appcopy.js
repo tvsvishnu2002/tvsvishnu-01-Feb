@@ -20,6 +20,8 @@ import Practice from "./practice";
 import Cookies from "universal-cookie";
 import ErrorPage from "./components/error";
 import App from "./test";
+import Leaderboard2 from "./candidate_wise_result";
+import AdminAssignTest from "./admin-assigntest";
 
 function Appc(){
     var cook = new Cookies()
@@ -41,6 +43,7 @@ function Appc(){
                     <Route path='/admin/instime' element={<AdminInsTime />} />
                     <Route path='/admin/insques' element={<AdminInsQ />} />
                     <Route path='/admin/insinstruction' element={<AdminInsInstr />} />
+                    <Route path='/admin/assigntest' element={<AdminAssignTest />} />
                     <Route path='/admin/delquestion' element={<AdminDelq />} />
                     <Route path='/admin/editquestion' element={<AdminEditq />} />
                     <Route path='/admin/editquestion2/:qidd' element={<AdminEditbyid />} />
@@ -62,7 +65,8 @@ function Appc(){
                     <Route path='/candidate/questions' element={<CandidateQuestions />} />
                     <Route path='/candidate/result2' element={<CandidateResult />} />
                     <Route path='/login' element={<Login /> }/>
-                    
+                    <Route path='/previous' element={<Leaderboard2 />} />
+
                     <Route path='/' element={<Candidate /> }/>            
                   <Route path='/leaderboard' element={<Leaderboard />} />
                     <Route path='/practice' element={<Practice />} />

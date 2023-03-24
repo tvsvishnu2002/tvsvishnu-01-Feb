@@ -11,6 +11,7 @@ import { Navigate } from 'react-router-dom';
 import { Dispatch } from 'react';
 import { setAdmin, setLogins } from './reducers/globalStates';
 import { useDispatch } from 'react-redux';
+import NAvbar from './navbar';
 function CandidateResult(props){
     const dispatcher = new useDispatch();
     console.log(props)
@@ -34,18 +35,8 @@ function CandidateResult(props){
 return (
         <center><div>
             
-            <h1>Candidate</h1><Menu>
-                <Menu.Item as={Link} name='Home' to='/candidate'></Menu.Item>
-                <Menu.Item as={Link} name='Leaderboard' to='/leaderboard'></Menu.Item>
-
-                <Menu.Menu position="right">
-                    <Dropdown item trigger={<>
-                    <Icon name="user circle" />{uname} </>} >
-                        <Dropdown.Menu>
-                         <Dropdown.Item onClick={destroySession}>
-                         <Icon name="sign-out" />Logout </Dropdown.Item></Dropdown.Menu></Dropdown> </Menu.Menu>
-
-            </Menu>
+            <h1>Candidate - Result</h1>
+            <NAvbar></NAvbar>
             <h2>            Test Submitted Succesfully</h2>
             <h2>Username : {uname}</h2>
             

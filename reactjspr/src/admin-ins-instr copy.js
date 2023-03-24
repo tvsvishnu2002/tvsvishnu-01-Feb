@@ -1,12 +1,11 @@
-import {Menu, Input} from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
-import AdminHome from './AdminHome';
+import {Input, Menu} from 'semantic-ui-react'
 import NAvbar from './navbar';
+import { Link } from 'react-router-dom';
 import React from 'react';
+import {Modal, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import { useState } from 'react';
-import {Modal, Button }from 'semantic-ui-react';
-function AdminInsTime() {
+function AdminInsInstr() {
   const [open, setOpen] = React.useState(false)
   const [sub, setsub] = useState(false)
   const [formData, setFormdata] = useState({})
@@ -17,24 +16,24 @@ function AdminInsTime() {
     e.preventDefault()
     
     console.log(formData)
-    axios.post('/admin/instime', formData).then((response) => {
-      setsub(true);
+    axios.post('/admin/insinstr', formData).then((response) => {
       setOpen(true);
 
     })
   }
-  return (<center>    
-    <div className="AdminInsTime">
-      
-      <h1>Admin Page - Enter Time</h1>
-      
-     <NAvbar />
-      <form onSubmit={handleSub} method="post">
-      <b>Enter Time in Minutes : </b><Input onChange={handleChange} placeholder='Enter Time in Minutes' name="time" />
+    return (<center>
+      <div className="AdminInsInstr">
+        <h1>Admin Page - Enter Instruction</h1>
+        <NAvbar /> 
+
+   <form onSubmit={handleSub} method="POST">
+
+   <b>Enter Instruction : </b><Input onChange={handleChange} placeholder='Enter Instruction' name="instruction" />
           <br></br><br></br>
           <button class="ui primary button">Submit</button>
-      </form>
-      {open ? 
+    </form>
+
+    {open ? 
 
 <Modal
       centered={true}
@@ -43,19 +42,18 @@ function AdminInsTime() {
       
     >
       <Modal.Header>Objective Test Software</Modal.Header>
-      
-      <Modal.Content>          
+      <Modal.Content>
         <Modal.Description style={{color:"Black"}}>
-          Timer Set Successfully.
+          Instruction Added Successfully.
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button primary onClick={() => setOpen(false)}>OK</Button>
+        <Button onClick={() => setOpen(false)}>OK</Button>
       </Modal.Actions>
     </Modal> : <></>}
 
-    </div></center>
 
-  );
-}
-export default AdminInsTime;
+      </div></center>
+    );
+  }
+  export default AdminInsInstr;  

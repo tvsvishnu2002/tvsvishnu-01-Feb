@@ -56,8 +56,14 @@ function CandidateQuestions(props) {
   useEffect(() => {
 
     if (count < 0) {
+      console.log(formData)
+    axios.post('/candidate/result', formData).then((response) => {
+      console.log(response)
+      var total = response.data.marks
+      history('/candidate/result2', {state: total})
+    })
       //handleSub();
-      formRef.current.submit();
+      //formRef.current.submit();
     }
   }, [count])
   const history = useNavigate()
@@ -105,9 +111,9 @@ function CandidateQuestions(props) {
       </h2>
       <NAvbar/><br></br>
       {/* <Container textAlign='left'> */}
-        <form onSubmit={handleSub} ref={formRef} method='post'>
+        <Form onSubmit={handleSub} method='post'>
 
-<input type="text" name="candname" defaultValue={uname} hidden></input>
+<input type="text" name="candname" defaultValue={uname} hidden />
           <Grid>
             <Grid.Column width={13}>
 
@@ -120,10 +126,10 @@ function CandidateQuestions(props) {
                 <br></br>
                 <br></br>
 
-                <Input type="radio" onChange={handleChange} name={currqno} value='A'></Input> {option1} <br></br><br></br>
-                <Input type="radio" onChange={handleChange} name={currqno} value='B'></Input> {option2}<br></br><br></br>
-                <Input type="radio" onChange={handleChange} name={currqno} value='C'></Input>{option3}<br></br><br></br>
-                <Input type="radio" onChange={handleChange} name={currqno} value='D'></Input> {option4}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='A'/> {option1} <br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='B'/> {option2}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='C'/>{option3}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={currqno} value='D'/> {option4}<br></br><br></br>
                 <hr></hr>
 
                 </Container>
@@ -147,7 +153,7 @@ function CandidateQuestions(props) {
           <center>
          
             <Button type="submit" primary>Submit</Button><br></br><br></br>
-            </center> </form>
+            </center> </Form>
       {/* </Container> */}
 
 

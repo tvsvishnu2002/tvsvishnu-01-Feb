@@ -49,7 +49,7 @@ function AdminEditbyid(props) {
   }
 
 
-  return (
+  return (<center>
     <div>
       <h1>Admin Page - Edit Question</h1>
       <NAvbar /> 
@@ -66,9 +66,9 @@ function AdminEditbyid(props) {
         <b>Correct Option : </b> <Input placeholder='Answer' onChange={handleChange} name="ans" defaultValue={questions[qidddd].ans} /><br></br><br></br>
         <b>Marks for Correct : </b> <Input placeholder='Marks' onChange={handleChange} name="pos" defaultValue={questions[qidddd].marks} /><br></br><br></br>
         <b>Negative Marking : </b> <Input placeholder='Negative Marks' onChange={handleChange} name="neg" defaultValue={questions[qidddd].neg} /><br></br><br></br>
-        <input type="checkbox" class="ui checkbox" onChange={handleChange} name='deleteqq'></input>
-        <label>Check this for deleting the question</label>
-
+          {/* <input type="checkbox" class="ui checkbox" onChange={handleChange} name='deleteqq' label="fefefee"></input> */}
+       
+<Checkbox label="Check this for deleting the question" onChange={handleChange} name = "deleteqq" ></Checkbox>
 
         <br></br>
         <br></br>
@@ -85,7 +85,7 @@ function AdminEditbyid(props) {
             >
               <Modal.Header>Objective Test Software</Modal.Header>
               <Modal.Content>
-                <Modal.Description>
+                <Modal.Description style={{color:"Black"}}>
                   Question Edited Successfully.
                 </Modal.Description>
               </Modal.Content>
@@ -96,7 +96,7 @@ function AdminEditbyid(props) {
             </>
       
       : <h1>Loading ... </h1>}
-    </div>
+    </div></center>
   );
 
 }
