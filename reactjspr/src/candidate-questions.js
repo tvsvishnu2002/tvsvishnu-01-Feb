@@ -81,34 +81,42 @@ function CandidateQuestions(props) {
       history('/candidate/result2', {state: total})
     })
   }
-
+  var nav = useNavigate()
+  const [lastClicked, setlastclicked] = useState(0)
   const displayQ = (e) => {
     e.preventDefault()
+    setlastclicked(e.target.name)
 
-    var currqn = e.target.name
-    setcurrqno(e.target.name)
-    setquesti(questions[currqn].ques)
+    const releventDiv = document.getElementById(e.target.name);
+    releventDiv.scrollIntoView({behavior: "smooth"});
+    // var currqn = e.target.name
+    // setcurrqno(e.target.name)
+    // setquesti(questions[currqn].ques)
 
 
-    setop1(questions[currqn].op1)
-    setop2(questions[currqn].op2)
-    setop3(questions[currqn].op3)
-    setop4(questions[currqn].op4)
-    setpos(questions[currqn].marks)
-    setneg(questions[currqn].neg)
+    // setop1(questions[currqn].op1)
+    // setop2(questions[currqn].op2)
+    // setop3(questions[currqn].op3)
+    // setop4(questions[currqn].op4)
+    // setpos(questions[currqn].marks)
+    // setneg(questions[currqn].neg)
+
+
 
   }
 
   return (
 <center>
     <div>
+      
       <h1>Candidate - Questions</h1>
 
       <h2>Timer : {Math.floor(count / 60)}:
         {count - (Math.floor(count / 60) * 60) >= 10 ? count - (Math.floor(count / 60) * 60) : <><>0</><>{count - (Math.floor(count / 60) * 60)}</></>}
 
 
-      </h2>
+      </h2>    
+
       <NAvbar/><br></br>
       {/* <Container textAlign='left'> */}
         <Form onSubmit={handleSub} method='post'>
@@ -119,7 +127,37 @@ function CandidateQuestions(props) {
 
               <>
               <Container textAlign='left'>
-                <h3>   Question {parseInt(currqno) + 1} : {questi}</h3>
+              
+              {questions.map((question, index) => (
+<div id={index}>
+<h3>   Question {parseInt(index) + 1} : {question.ques}</h3>
+                <b>  Marks : {question.marks}</b> <br></br>
+
+                <b>   Negative Marks : {question.neg}</b>
+                <br></br>
+                <br></br>
+                {/* <Radio onChange={handleChange} name={index} value='A' label={question.op1} /><br></br><br></br>
+                <Radio onChange={handleChange} name={index} value='B' label={question.op2} /><br></br><br></br>
+                <Radio onChange={handleChange} name={index} value='C' label={question.op3} /><br></br><br></br>
+                <Radio onChange={handleChange} name={index} value='D' label={question.op4} /> */}
+
+
+                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='A' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op1}</label></div>
+                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='B' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op2}</label></div>
+                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='C' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op3}</label></div>
+                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='D' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op4}</label></div>
+
+          
+           {/* <Input type="radio" onChange={handleChange} name={index} value='A'/> {question.op1} <br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={index} value='B'/> {question.op2}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={index} value='C'/>{question.op3}<br></br><br></br>
+                <Input type="radio" onChange={handleChange} name={index} value='D'/> {question.op4}<br></br><br></br> */}
+                <hr></hr>
+
+                </div>
+))}
+{/* 
+<h3>   Question {parseInt(currqno) + 1} : {questi}</h3>
                 <b>  Marks : {positivem}</b> <br></br>
 
                 <b>   Negative Marks : {negativem}</b>
@@ -132,25 +170,25 @@ function CandidateQuestions(props) {
                 <Input type="radio" onChange={handleChange} name={currqno} value='D'/> {option4}<br></br><br></br>
                 <hr></hr>
 
-                </Container>
-              </>
+                 */}
+             </Container> </>
             </Grid.Column>
-            <Grid.Column width={3}>
+            <Grid.Column width={3} style={{marginLeft : "1100px", position : "fixed"}}>
+            <Icon name="user circle" />{uname}<hr></hr>
+            <h3>Timer : {Math.floor(count / 60)}:
+    {count - (Math.floor(count / 60) * 60) >= 10 ? count - (Math.floor(count / 60) * 60) : <><>0</><>{count - (Math.floor(count / 60) * 60)}</></>}
+</h3><hr></hr>
 
-              {questions.map((question, index) => (
-                <>
-{index % 4 !== 3 ? <Button name={index} circular onClick={displayQ}>{index + 1}</Button> 
- : <><Button name={index} toggle circular onClick={displayQ}>{index + 1}</Button> <hr></hr></>
+{questions.map((question, index) => (
+<>
+{index % 4 !== 3 ? <Button name={index} id = {index} active = {lastClicked == index} toggle onClick={displayQ}>{index + 1}</Button> 
+ : <><Button name={index} id = {index} active = {lastClicked == index} toggle onClick={displayQ}>{index + 1}</Button> <hr></hr></>
 }
-                  {/* <Button name={index} circular onClick={displayQ}>{index + 1}</Button>  */}
-
-                </>
-              ))}
-
-            </Grid.Column>
-
-          </Grid>
-          <center>
+</>
+))}
+</Grid.Column>
+</Grid>
+<center>
          
             <Button type="submit" primary>Submit</Button><br></br><br></br>
             </center> </Form>

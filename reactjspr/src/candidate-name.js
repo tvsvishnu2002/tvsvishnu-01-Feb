@@ -56,8 +56,8 @@ function Candidate() {
   
   return (<center>
     <div className="Candidate"> 
-      <h1>Candidate - Enter Name</h1>
-      <NAvbar/><br></br>
+    <h1>Candidate - Enter Name</h1><NAvbar/>
+      <br></br>
       <form onSubmit={handleSub} method="post"> 
       <b>Check Username : </b><Input placeholder='Enter Name' defaultValue = {uname} disabled name="candname" />
           <br></br><br></br>

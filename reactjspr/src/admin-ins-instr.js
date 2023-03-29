@@ -53,8 +53,23 @@ function AdminInsInstr() {
     console.log(formData)
     axios.post('/admin/insinstr', formData).then((response) => {
       setOpen(true);
-
+      async function fetchData() {
+        const response = await axios.get('/candidate/instructionsapi');
+        const assigneduserss = response.data
+        var unam = cookie.get("username")
+  
+        console.log(assignedusers)
+        
+      
+        setassignedusers(assigneduserss);
+        console.log(assignedusers)
+  
+        setuname(cookie.get("username"))
+        
+      }
+      fetchData();
     })
+
   }
 
   

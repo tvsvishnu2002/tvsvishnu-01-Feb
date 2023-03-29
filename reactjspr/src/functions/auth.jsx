@@ -2,6 +2,17 @@ import Cookies from "universal-cookie";
 
 import axios from "axios";
 let cookie = new Cookies();
+export const clearCookie = () => {
+
+    Object.keys(cookie.getAll()).map((ele) => {
+  
+      cookie.set(ele, "", { path: "/", expires: new Date() });
+  
+      return true;
+  
+    });
+  
+  };
 export const checkAuth = async () => {
   if (cookie.get("session_id")) {
     let res = await axios.post(
@@ -11,7 +22,7 @@ export const checkAuth = async () => {
         headers: { "Content-Type": "application/json" },
       }
     );
-    return res.data[0];
+    return res.data.sessionExist;
   } else {
     // cookie.set("session_id", "", { path: "/", expires: new Date() });
     return false;
@@ -34,6 +45,7 @@ export const logout = async () => {
     .then((response) => response.data)
     .then((data) => {
       cookie.set("session_id", "", { path: "/", expires: new Date() });
+      clearCookie();
       flag = data;
     });
   return flag;

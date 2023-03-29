@@ -110,24 +110,17 @@ function AdminAssignTest() {
         <Table.HeaderCell>Username</Table.HeaderCell>
         <Table.HeaderCell>Remove Access</Table.HeaderCell>
       </Table.Row>
-    </Table.Header>      <Table.Body>
+    </Table.Header>      
+    <Table.Body>
 
     {assignedusers.map((instruction) => (
       <Table.Row>
         <Table.Cell>{instruction.username}</Table.Cell>
         <Table.Cell><Button name={instruction._id} icon='delete' onClick={() => handleDel(instruction._id)} negative /></Table.Cell>
         </Table.Row>
-        
              ))}
-
              </Table.Body>
-
 </Table>
-
-
-
-
-
     {open ? 
 
 <Modal
@@ -146,9 +139,7 @@ function AdminAssignTest() {
         <Button onClick={() => setOpen(false)}>OK</Button>
       </Modal.Actions>
     </Modal> : <></>}
-
-
-      </div></center>
+  </div></center>
     );
   }
   export default AdminAssignTest;  
