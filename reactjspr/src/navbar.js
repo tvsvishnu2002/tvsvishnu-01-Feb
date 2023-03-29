@@ -36,6 +36,9 @@ function NAvbar() {
 
             {uname === "true" ? <Menu><Menu.Item as={Link} name='Home' to='/admin'></Menu.Item>
                 <Menu.Item as={Link} name='Set Time' to='/admin/instime'></Menu.Item>
+
+                <Menu.Item as={Link} name='Set Expiry Time' to='/admin/insexp'></Menu.Item>
+                <Menu.Item as={Link} name='Insert Test' to='/admin/instest'></Menu.Item>
                 <Menu.Item as={Link} name='Insert Question' to='/admin/insques'></Menu.Item>
                 <Menu.Item as={Link} name='Instructions' to='/admin/insinstruction'></Menu.Item>
                 <Menu.Item as={Link} name='Assign Test' to='/admin/assigntest'></Menu.Item>

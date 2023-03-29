@@ -50,6 +50,7 @@ function AdminHome() {
       const response = axios.get('/candidate/questionsapi');
       const questions = response.data["questions"]
       setQuestions(questions)
+      
     })
 
   }
@@ -64,7 +65,7 @@ function AdminHome() {
   return (
     <center>
     <div>
-      <h1>Admin - Home</h1><hr></hr>
+      <h1>Admin - Home</h1>
       <NAvbar /> 
       
 
@@ -78,7 +79,7 @@ function AdminHome() {
 
       <hr></hr>
       <h2>Questions</h2>
-      <Container textAlign='center'>
+      <Container textAlign='justify'>
         <Grid columns='1'>
           {questions.map((question, index) => (
             <>

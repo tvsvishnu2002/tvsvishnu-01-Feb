@@ -22,6 +22,8 @@ import ErrorPage from "./components/error";
 import App from "./test";
 import Leaderboard2 from "./candidate_wise_result";
 import AdminAssignTest from "./admin-assigntest";
+import AdminInsExp from "./admin-assignexpiry";
+import AdminInsTest from "./admin-ins-test";
 
 function Appc(){
     var cook = new Cookies()
@@ -41,6 +43,9 @@ function Appc(){
 <>
                     <Route path='/admin' element={<AdminHome /> }/>
                     <Route path='/admin/instime' element={<AdminInsTime />} />
+                    <Route path='/admin/insexp' element={<AdminInsExp />} />
+                    <Route path='/admin/instest' element={<AdminInsTest />} />
+
                     <Route path='/admin/insques' element={<AdminInsQ />} />
                     <Route path='/admin/insinstruction' element={<AdminInsInstr />} />
                     <Route path='/admin/assigntest' element={<AdminAssignTest />} />

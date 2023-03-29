@@ -2,7 +2,7 @@ import {Input, Menu, TextArea, Button, Modal, Form} from 'semantic-ui-react'
 import TextareaAutosize from 'react-textarea-autosize';
 import { Link } from 'react-router-dom';
 import NAvbar from './navbar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 function AdminInsQ() {
@@ -12,6 +12,17 @@ function AdminInsQ() {
   const handleChange = (e) => {
     setFormdata({...formData, [e.target.name] : e.target.value});
   }
+
+  const [tests, settests] = useState("")
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get('/testsapi');
+      const questions = response.data
+      settests(questions)
+    }
+
+    fetchData();
+  }, []);
   function handleSub(e) {
     e.preventDefault()
     
@@ -28,16 +39,28 @@ function AdminInsQ() {
       <NAvbar /> 
 
 <form onSubmit={handleSub} method="POST">
-
-    <b>Enter a Question : </b> <textarea onChange={handleChange} placeholder='Question' name="quest" /><br></br><br></br>
-    <b>Enter Option A : </b> <Input onChange={handleChange} placeholder='Option A' name="op1" /><br></br><br></br>
-    <b>Enter Option B : </b> <Input onChange={handleChange} placeholder='Option B' name="op2" /><br></br><br></br>
-    <b>Enter Option C : </b> <Input onChange={handleChange} placeholder='Option C' name="op3" /><br></br><br></br>
-    <b>Enter Option D : </b> <Input onChange={handleChange} placeholder='Option D' name="op4" /><br></br><br></br>
-    <b>Enter Correct Option : </b> <Input onChange={handleChange} placeholder='Answer' name="ans" /><br></br><br></br>
-    <b>Marks for Correct : </b> <Input onChange={handleChange} placeholder='Marks' name="pos" /><br></br><br></br>
-    <b>Negative Marking : </b> <Input onChange={handleChange} placeholder='Negative Marks' name="neg" /><br></br><br></br>
+<table>
+<tr>
+  <td style={{width:"100px"}}> <b>Test : </b></td><td> 
+      {/* <select name="testname" onChange={handleChange} required>
+        <option value="" selected disabled hidden>Select</option>
+        {tests.map((question) => (
+          <option value={question.testname}>{question.testname}</option>
+        ))}
+        </select>  */}
+   </td> </tr> 
+   <tr>
     
+    
+    <td style={{width:"150px"}}> <b>Enter a Question : </b></td><td> <textarea onChange={handleChange} placeholder='Question' name="quest" />
+   </td>  </tr> <tr><td style={{width:"100px"}}> <b>Enter Option A : </b></td><td> <Input onChange={handleChange} placeholder='Option A' name="op1" />
+   </td> </tr> <tr><td style={{width:"100px"}}> <b>Enter Option B : </b> </td><td><Input onChange={handleChange} placeholder='Option B' name="op2" />
+   </td> </tr> <tr><td style={{width:"100px"}}>  <b>Enter Option C : </b></td><td> <Input onChange={handleChange} placeholder='Option C' name="op3" />
+   </td> </tr> <tr><td style={{width:"100px"}}>  <b>Enter Option D : </b></td><td> <Input onChange={handleChange} placeholder='Option D' name="op4" />
+   </td> </tr> <tr><td style={{width:"100px"}}>  <b>Enter Correct Option : </b> </td><td><Input onChange={handleChange} placeholder='Answer' name="ans" />
+   </td> </tr> <tr><td style={{width:"100px"}}>  <b>Marks for Correct : </b></td><td> <Input onChange={handleChange} placeholder='Marks' name="pos" />
+   </td> </tr> <tr><td style={{width:"100px"}}>  <b>Negative Marking : </b> </td><td><Input onChange={handleChange} placeholder='Negative Marks' name="neg" />
+    </td></tr></table><br></br>
 <button class="ui primary button">Submit</button></form>
 {open ? 
 

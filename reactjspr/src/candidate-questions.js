@@ -142,10 +142,10 @@ function CandidateQuestions(props) {
                 <Radio onChange={handleChange} name={index} value='D' label={question.op4} /> */}
 
 
-                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='A' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op1}</label></div>
-                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='B' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op2}</label></div>
-                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='C' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op3}</label></div>
-                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='D' type="radio" class="hidden" readonly="" tabindex="0"/><label>{question.op4}</label></div>
+                <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='A' type="radio" readonly="" tabindex="0"/><label>{question.op1}</label></div>
+                <br></br> <br></br>    <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='B' type="radio" readonly="" tabindex="0"/><label>{question.op2}</label></div>
+                <br></br><br></br>   <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='C' type="radio" readonly="" tabindex="0"/><label>{question.op3}</label></div>
+                <br></br><br></br>   <div class="ui radio checkbox"><input onChange={handleChange} name={index} value='D' type="radio" readonly="" tabindex="0"/><label>{question.op4}</label></div>
 
           
            {/* <Input type="radio" onChange={handleChange} name={index} value='A'/> {question.op1} <br></br><br></br>
